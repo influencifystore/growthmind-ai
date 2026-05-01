@@ -1,0 +1,24 @@
+{
+  "overview": "GrowthMind AI is a stunning animated blog page showcasing an article about how AI is transforming digital marketing in 2026. Features a 3D hero, scroll-triggered animations, and a modern dark UI.",
+  "features": [
+    "3D animated hero section with floating particles",
+    "Scroll-triggered reveal animations for each blog section",
+    "Parallax backgrounds and micro-interactions",
+    "Dark gradient design with purple/blue/teal palette",
+    "Responsive mobile layout with hamburger menu",
+    "Social share buttons and newsletter prompt",
+    "Smooth hover effects and animated dividers"
+  ],
+  "category": "blog",
+  "tags": [
+    "blog",
+    "ai",
+    "digital-marketing",
+    "3d-animations",
+    "framer-motion",
+    "three-js",
+    "dark-mode",
+    "trending-ui"
+  ],
+  "last_updated": "2026-04-30T07:21:50.856Z"
+}
