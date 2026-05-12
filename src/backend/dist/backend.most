@@ -1,4 +1,21 @@
 // Version: 1.0.0
+type ContactSubmission__817697628 =
+  {
+    company : ?Text;
+    email : Text;
+    id : Nat;
+    message : Text;
+    name : Text;
+    timestamp : Int
+  };
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
 actor {
-  
+  stable counter : {var nextId : Nat};
+  stable submissions :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?ContactSubmission__817697628]];
+      var elementIndex : Nat__490723111
+    }
 };

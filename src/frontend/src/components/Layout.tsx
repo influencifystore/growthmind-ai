@@ -25,9 +25,11 @@ export function Layout({ children }: LayoutProps) {
   }, []);
 
   const navLinks = [
-    { label: "Home", href: "#hero" },
-    { label: "Blog", href: "#blog" },
-    { label: "About", href: "#about" },
+    { label: "Features", href: "/#features" },
+    { label: "How It Works", href: "/#how-it-works" },
+    { label: "Stats", href: "/#stats" },
+    { label: "Blog", href: "/blog" },
+    { label: "Contact", href: "/#contact" },
   ];
 
   return (
@@ -50,7 +52,7 @@ export function Layout({ children }: LayoutProps) {
         <div className="flex items-center justify-between px-6 py-3">
           {/* Brand */}
           <a
-            href="#hero"
+            href="/"
             className="flex items-center gap-2.5 group"
             data-ocid="nav.logo_link"
           >
@@ -77,7 +79,7 @@ export function Layout({ children }: LayoutProps) {
                 key={link.href}
                 href={link.href}
                 className="px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-smooth"
-                data-ocid={`nav.${link.label.toLowerCase()}_link`}
+                data-ocid={`nav.${link.label.toLowerCase().replace(/\s+/g, "_")}_link`}
               >
                 {link.label}
               </a>
@@ -97,12 +99,12 @@ export function Layout({ children }: LayoutProps) {
             </button>
 
             <a
-              href="#blog"
+              href="/#contact"
               className="hidden md:flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold gradient-shift text-white transition-smooth hover:scale-105 glow-primary"
               data-ocid="nav.cta_button"
             >
               <Sparkles size={14} />
-              Read Now
+              Get Started
             </a>
 
             <button

@@ -8,10 +8,50 @@
 
 import { IDL } from '@icp-sdk/core/candid';
 
-export const idlService = IDL.Service({});
+export const ContactSubmission = IDL.Record({
+  'id' : IDL.Nat,
+  'name' : IDL.Text,
+  'email' : IDL.Text,
+  'company' : IDL.Opt(IDL.Text),
+  'message' : IDL.Text,
+  'timestamp' : IDL.Int,
+});
+export const SubmitContactInput = IDL.Record({
+  'name' : IDL.Text,
+  'email' : IDL.Text,
+  'company' : IDL.Opt(IDL.Text),
+  'message' : IDL.Text,
+});
+export const SubmitResult = IDL.Variant({ 'ok' : IDL.Text, 'err' : IDL.Text });
+
+export const idlService = IDL.Service({
+  'getContacts' : IDL.Func([], [IDL.Vec(ContactSubmission)], ['query']),
+  'submitContact' : IDL.Func([SubmitContactInput], [SubmitResult], []),
+});
 
 export const idlInitArgs = [];
 
-export const idlFactory = ({ IDL }) => { return IDL.Service({}); };
+export const idlFactory = ({ IDL }) => {
+  const ContactSubmission = IDL.Record({
+    'id' : IDL.Nat,
+    'name' : IDL.Text,
+    'email' : IDL.Text,
+    'company' : IDL.Opt(IDL.Text),
+    'message' : IDL.Text,
+    'timestamp' : IDL.Int,
+  });
+  const SubmitContactInput = IDL.Record({
+    'name' : IDL.Text,
+    'email' : IDL.Text,
+    'company' : IDL.Opt(IDL.Text),
+    'message' : IDL.Text,
+  });
+  const SubmitResult = IDL.Variant({ 'ok' : IDL.Text, 'err' : IDL.Text });
+  
+  return IDL.Service({
+    'getContacts' : IDL.Func([], [IDL.Vec(ContactSubmission)], ['query']),
+    'submitContact' : IDL.Func([SubmitContactInput], [SubmitResult], []),
+  });
+};
 
 export const init = ({ IDL }) => { return []; };

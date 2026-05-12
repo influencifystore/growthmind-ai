@@ -1,24 +1,27 @@
 {
-  "overview": "GrowthMind AI is a stunning animated blog page showcasing an article about how AI is transforming digital marketing in 2026. Features a 3D hero, scroll-triggered animations, and a modern dark UI.",
+  "overview": "GrowthMind AI is a premium animated landing page and blog for AI-driven digital marketing. Features a full-viewport hero with AI brain animation, animated feature cards, stats counters, contact form, and a 3D-animated blog — all with a stunning purple-to-teal gradient design.",
   "features": [
-    "3D animated hero section with floating particles",
-    "Scroll-triggered reveal animations for each blog section",
-    "Parallax backgrounds and micro-interactions",
-    "Dark gradient design with purple/blue/teal palette",
-    "Responsive mobile layout with hamburger menu",
-    "Social share buttons and newsletter prompt",
-    "Smooth hover effects and animated dividers"
+    "Premium animated hero with SVG AI brain illustration",
+    "3D floating particles and orbs",
+    "Animated features grid with hover effects",
+    "How It Works 3-step section",
+    "Animated statistics counters",
+    "Contact form with backend storage",
+    "Sticky navigation with mobile menu",
+    "Purple-to-teal OKLCH gradient design system",
+    "Scroll-triggered Framer Motion animations",
+    "Fully responsive from mobile to 4K"
   ],
-  "category": "blog",
+  "category": "marketing",
   "tags": [
-    "blog",
+    "landing-page",
     "ai",
     "digital-marketing",
-    "3d-animations",
+    "animated",
+    "3d",
     "framer-motion",
-    "three-js",
-    "dark-mode",
-    "trending-ui"
+    "premium",
+    "contact-form"
   ],
-  "last_updated": "2026-04-30T07:21:50.856Z"
+  "last_updated": "2026-05-12T16:37:43.851Z"
 }

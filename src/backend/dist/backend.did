@@ -1,2 +1,25 @@
+type SubmitResult = 
+ variant {
+   err: text;
+   ok: text;
+ };
+type SubmitContactInput = 
+ record {
+   company: opt text;
+   email: text;
+   message: text;
+   name: text;
+ };
+type ContactSubmission = 
+ record {
+   company: opt text;
+   email: text;
+   id: nat;
+   message: text;
+   name: text;
+   timestamp: int;
+ };
 service : {
+  getContacts: () -> (vec ContactSubmission) query;
+  submitContact: (input: SubmitContactInput) -> (SubmitResult);
 }

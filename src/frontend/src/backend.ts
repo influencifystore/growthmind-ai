@@ -89,10 +89,138 @@ export class ExternalBlob {
         return this;
     }
 }
-export interface backendInterface {
+export type SubmitResult = {
+    __kind__: "ok";
+    ok: string;
+} | {
+    __kind__: "err";
+    err: string;
+};
+export interface SubmitContactInput {
+    name: string;
+    email: string;
+    company?: string;
+    message: string;
 }
+export interface ContactSubmission {
+    id: bigint;
+    name: string;
+    email: string;
+    company?: string;
+    message: string;
+    timestamp: bigint;
+}
+export interface backendInterface {
+    getContacts(): Promise<Array<ContactSubmission>>;
+    submitContact(input: SubmitContactInput): Promise<SubmitResult>;
+}
+import type { ContactSubmission as _ContactSubmission, SubmitContactInput as _SubmitContactInput, SubmitResult as _SubmitResult } from "./declarations/backend.did.d.ts";
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
+    async getContacts(): Promise<Array<ContactSubmission>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getContacts();
+                return from_candid_vec_n1(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getContacts();
+            return from_candid_vec_n1(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async submitContact(arg0: SubmitContactInput): Promise<SubmitResult> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.submitContact(to_candid_SubmitContactInput_n5(this._uploadFile, this._downloadFile, arg0));
+                return from_candid_SubmitResult_n7(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.submitContact(to_candid_SubmitContactInput_n5(this._uploadFile, this._downloadFile, arg0));
+            return from_candid_SubmitResult_n7(this._uploadFile, this._downloadFile, result);
+        }
+    }
+}
+function from_candid_ContactSubmission_n2(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _ContactSubmission): ContactSubmission {
+    return from_candid_record_n3(_uploadFile, _downloadFile, value);
+}
+function from_candid_SubmitResult_n7(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _SubmitResult): SubmitResult {
+    return from_candid_variant_n8(_uploadFile, _downloadFile, value);
+}
+function from_candid_opt_n4(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [string]): string | null {
+    return value.length === 0 ? null : value[0];
+}
+function from_candid_record_n3(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    id: bigint;
+    name: string;
+    email: string;
+    company: [] | [string];
+    message: string;
+    timestamp: bigint;
+}): {
+    id: bigint;
+    name: string;
+    email: string;
+    company?: string;
+    message: string;
+    timestamp: bigint;
+} {
+    return {
+        id: value.id,
+        name: value.name,
+        email: value.email,
+        company: record_opt_to_undefined(from_candid_opt_n4(_uploadFile, _downloadFile, value.company)),
+        message: value.message,
+        timestamp: value.timestamp
+    };
+}
+function from_candid_variant_n8(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    ok: string;
+} | {
+    err: string;
+}): {
+    __kind__: "ok";
+    ok: string;
+} | {
+    __kind__: "err";
+    err: string;
+} {
+    return "ok" in value ? {
+        __kind__: "ok",
+        ok: value.ok
+    } : "err" in value ? {
+        __kind__: "err",
+        err: value.err
+    } : value;
+}
+function from_candid_vec_n1(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Array<_ContactSubmission>): Array<ContactSubmission> {
+    return value.map((x)=>from_candid_ContactSubmission_n2(_uploadFile, _downloadFile, x));
+}
+function to_candid_SubmitContactInput_n5(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: SubmitContactInput): _SubmitContactInput {
+    return to_candid_record_n6(_uploadFile, _downloadFile, value);
+}
+function to_candid_record_n6(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    name: string;
+    email: string;
+    company?: string;
+    message: string;
+}): {
+    name: string;
+    email: string;
+    company: [] | [string];
+    message: string;
+} {
+    return {
+        name: value.name,
+        email: value.email,
+        company: value.company ? candid_some(value.company) : candid_none(),
+        message: value.message
+    };
 }
 export interface CreateActorOptions {
     agent?: Agent;

@@ -79,6 +79,10 @@ export default {
       },
       boxShadow: {
         xs: "0 1px 2px 0 rgba(0,0,0,0.05)",
+        subtle: "0 2px 8px oklch(0.11 0.01 280 / 0.3)",
+        glow: "0 0 30px oklch(0.68 0.28 300 / 0.4), 0 0 60px oklch(0.68 0.28 300 / 0.2)",
+        "glow-accent": "0 0 25px oklch(0.72 0.22 195 / 0.5), 0 0 50px oklch(0.72 0.22 195 / 0.25)",
+        elevated: "0 4px 24px oklch(0.68 0.28 300 / 0.15), 0 1px 4px oklch(0.11 0.01 280 / 0.4)",
       },
       keyframes: {
         "accordion-down": {
@@ -101,6 +105,37 @@ export default {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-8px)" },
         },
+        "orb-drift": {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "33%": { transform: "translate(30px, -20px) scale(1.05)" },
+          "66%": { transform: "translate(-20px, 15px) scale(0.97)" },
+        },
+        "particle-float": {
+          "0%": { transform: "translateY(100vh) rotate(0deg)", opacity: "0" },
+          "10%": { opacity: "1" },
+          "90%": { opacity: "1" },
+          "100%": { transform: "translateY(-100px) rotate(360deg)", opacity: "0" },
+        },
+        "pulse-ring": {
+          "0%": { transform: "scale(1)", opacity: "1" },
+          "100%": { transform: "scale(1.4)", opacity: "0" },
+        },
+        shimmer: {
+          "0%": { backgroundPosition: "-200% center" },
+          "100%": { backgroundPosition: "200% center" },
+        },
+        "pulse-glow": {
+          "0%, 100%": { boxShadow: "0 0 20px oklch(0.68 0.28 300 / 0.3)" },
+          "50%": { boxShadow: "0 0 40px oklch(0.68 0.28 300 / 0.6), 0 0 80px oklch(0.72 0.22 195 / 0.2)" },
+        },
+        "spin-slow": {
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(360deg)" },
+        },
+        "counter-up": {
+          from: { transform: "translateY(100%)", opacity: "0" },
+          to: { transform: "translateY(0)", opacity: "1" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -108,6 +143,12 @@ export default {
         "gradient-pulse": "gradient-pulse 8s ease-in-out infinite",
         "fade-in": "fade-in 0.6s ease-out forwards",
         "float-subtle": "float-subtle 4s ease-in-out infinite",
+        "orb-drift": "orb-drift 12s ease-in-out infinite",
+        "particle-float": "particle-float 8s linear infinite",
+        "pulse-ring": "pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        shimmer: "shimmer 3s linear infinite",
+        "pulse-glow": "pulse-glow 3s ease-in-out infinite",
+        "spin-slow": "spin-slow 20s linear infinite",
       },
     },
   },

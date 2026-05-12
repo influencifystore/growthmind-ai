@@ -1,11 +1,7 @@
-import {
-  Outlet,
-  createRootRoute,
-  createRoute,
-  createRouter,
-} from "@tanstack/react-router";
+import { Outlet, createRootRoute, createRoute } from "@tanstack/react-router";
 import { Layout } from "../components/Layout";
 import BlogPage from "../pages/BlogPage";
+import LandingPage from "../pages/LandingPage";
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -15,12 +11,16 @@ const rootRoute = createRootRoute({
   ),
 });
 
-const blogRoute = createRoute({
+const landingRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/",
+  component: LandingPage,
+});
+
+const blogRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/blog",
   component: BlogPage,
 });
 
-export const routeTree = rootRoute.addChildren([blogRoute]);
-
-export const router = createRouter({ routeTree });
+export const routeTree = rootRoute.addChildren([landingRoute, blogRoute]);
